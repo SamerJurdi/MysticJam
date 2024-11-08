@@ -237,6 +237,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2657171854332477241}
+    - target: {fileID: 2016151564470554491, guid: cd466313935882343ac9c5e6441aeced, type: 3}
+      propertyPath: hoverSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016151564470554491, guid: cd466313935882343ac9c5e6441aeced, type: 3}
+      propertyPath: hoverHeight
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016151564470554491, guid: cd466313935882343ac9c5e6441aeced, type: 3}
+      propertyPath: distanceFromPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2239172079445383432, guid: cd466313935882343ac9c5e6441aeced, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
