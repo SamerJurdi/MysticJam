@@ -20,6 +20,6 @@ public class PlayerController : MonoBehaviour
         float moveInputY = Input.GetAxisRaw("Vertical");    // Up/Down (W/S or Arrow Keys)
 
         // Apply movement in both X and Y axes using Rigidbody2D velocity
-        rb.velocity = new Vector2(moveInputX * moveSpeed, moveInputY * moveSpeed);
+        rb.velocity = new Vector2(moveInputX, moveInputY).normalized * moveSpeed;
     }
 }
