@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int health = 3;
     public float moveSpeed = 5f;
 
     private Rigidbody2D rb;
@@ -21,5 +22,20 @@ public class PlayerController : MonoBehaviour
 
         // Apply movement in both X and Y axes using Rigidbody2D velocity
         rb.velocity = new Vector2(moveInputX, moveInputY).normalized * moveSpeed;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // TODO: Handle the player's death (e.g., play animation, show death screen, etc.)
+        Destroy(gameObject);
     }
 }
