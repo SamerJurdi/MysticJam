@@ -41,6 +41,15 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        animator.Play("Anim_Witch_Damage", -1, 0f);
+
+        StartCoroutine(WaitForDamageAnimation());
+    }
+
+    private IEnumerator WaitForDamageAnimation()
+    {
+        yield return new WaitForSeconds(0.5f);
+
         if (health <= 0)
         {
             Die();
