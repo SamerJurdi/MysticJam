@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7971534463138454147}
-  - {fileID: 3894539706839454180}
+  - {fileID: 2467606986837477599}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5634831314773832559
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbe8b36ee808ac4cbc670b2b7186d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 2722153942824491753}
   animator: {fileID: 8749105992195923829}
+  spriteRenderer: {fileID: 2722153942824491753}
   health: 3
   moveSpeed: 5
 --- !u!50 &7344702994381308303
@@ -234,7 +234,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1001 &2963100403618629868
+--- !u!1001 &4408338350208504279
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -242,37 +242,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2657171854332477241}
     m_Modifications:
-    - target: {fileID: 1916555361063221253, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1916555361063221253, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1916555361063221253, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1916555361063221253, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2016151564470554491, guid: cd466313935882343ac9c5e6441aeced, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 2657171854332477241}
     - target: {fileID: 2016151564470554491, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-      propertyPath: hoverSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2016151564470554491, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-      propertyPath: hoverHeight
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2016151564470554491, guid: cd466313935882343ac9c5e6441aeced, type: 3}
       propertyPath: distanceFromPlayer
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2239172079445383432, guid: cd466313935882343ac9c5e6441aeced, type: 3}
       propertyPath: m_LocalPosition.x
@@ -318,17 +294,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tome
       objectReference: {fileID: 0}
-    - target: {fileID: 7787854112641215023, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd466313935882343ac9c5e6441aeced, type: 3}
---- !u!4 &3894539706839454180 stripped
+--- !u!4 &2467606986837477599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2239172079445383432, guid: cd466313935882343ac9c5e6441aeced, type: 3}
-  m_PrefabInstance: {fileID: 2963100403618629868}
+  m_PrefabInstance: {fileID: 4408338350208504279}
   m_PrefabAsset: {fileID: 0}

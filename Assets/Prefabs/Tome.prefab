@@ -28,7 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2239172079445383432}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 869025161
   m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: ccb911e7532eb2149bb6f3d781ca2c65, type: 3}
   m_Color: {r: 0.65151346, g: 0.735849, b: 0.114542544, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,5 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   floatingObject: {fileID: 1916555361063221253}
-  moveSpeed: 5
-  distanceFromPlayer: 1.5
+  projectilePrefab: {fileID: 2857575702327917568, guid: 090262dc0198f4d41af7a705663cfc14, type: 3}
+  distanceFromPlayer: 0.5
+  hoverHeight: 0.25
+  hoverSpeed: 1.25
+  transitionSpeed: 2
+  projectileSpeed: 10
