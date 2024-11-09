@@ -1,47 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public Animator animator;
     public int health = 10;
     public float moveSpeed = 3f;
     public int damageToPlayer = 1;
     public float attackCooldown = 1f; // Time between damage ticks while colliding with the player
-    private float attackTimer = 0f; // Timer to handle damage cooldown
 
     private Transform player;
     private PlayerController playerController;
+    private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
+    private float attackCooldownTimer = 0f;
+    private bool isAlive = true;
 
     private void Start()
     {
+        animator.Play("Anim_Pumpkin");
+        rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         player = GameObject.FindWithTag("Player").transform;
         playerController = player.GetComponent<PlayerController>();
     }
 
     private void Update()
     {
-        FollowPlayer();
-
-        if (attackTimer > 0f)
-        {
-            attackTimer -= Time.deltaTime;
+        if (isAlive && player != null) {
+            FollowPlayer();
         }
     }
 
     private void FollowPlayer()
     {
-        if (player != null)
+        // Manage Attack Intervals
+        if (attackCooldownTimer > 0f)
         {
-            Vector3 direction = (player.position - transform.position).normalized;
-            transform.position += direction * moveSpeed * Time.deltaTime;
+            attackCooldownTimer -= Time.deltaTime;
         }
+        // Follow player logic
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && attackTimer <= 0f)
+        if (collision.gameObject.CompareTag("Player") && attackCooldownTimer <= 0f && isAlive)
         {
             playerController.TakeDamage(damageToPlayer);
-            attackTimer = attackCooldown;
+            attackCooldownTimer = attackCooldown;
         }
     }
 
@@ -56,7 +65,19 @@ public class EnemyController : MonoBehaviour
 
     private void Die()
     {
-        // TODO: Handle the enemy's death (e.g., play an animation, destroy the enemy)
+        isAlive = false; // Internal state to prevent attacks
+        boxCollider.enabled = false; // Prevent collisions
+        rb.velocity = Vector2.zero; // Stop them in their place
+        animator.Play("Anim_Pumpkin_Death");
+
+        StartCoroutine(WaitForDamageAnimation());
+    }
+
+    private IEnumerator WaitForDamageAnimation()
+    {
+        yield return new WaitForSeconds(1f);
+
         Destroy(gameObject);
     }
+
 }
