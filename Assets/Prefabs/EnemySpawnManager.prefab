@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 585335421775598646}
+  - {fileID: 2011229770838533699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-3590093445743517479
@@ -50,7 +50,10 @@ MonoBehaviour:
   minSpawnInterval: 1
   spawnIntervalDecreaseRate: 0.1
   spawnDelayRange: 1
---- !u!1001 &5204427193820127570
+  difficultyTimer: 10
+  spawnMultiplier: 2
+  spawnPointsPercentage: 0.2
+--- !u!1001 &6615510021758128935
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -107,8 +110,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5f0cdd861516014ba5312f2a85364af, type: 3}
---- !u!4 &585335421775598646 stripped
+--- !u!4 &2011229770838533699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4622471687981200740, guid: c5f0cdd861516014ba5312f2a85364af, type: 3}
-  m_PrefabInstance: {fileID: 5204427193820127570}
+  m_PrefabInstance: {fileID: 6615510021758128935}
   m_PrefabAsset: {fileID: 0}

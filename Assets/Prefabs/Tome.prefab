@@ -137,3 +137,5 @@ MonoBehaviour:
   hoverSpeed: 1.25
   transitionSpeed: 2
   projectileSpeed: 5
+  shootingCooldown: 2
+  pageBoost: 0.2

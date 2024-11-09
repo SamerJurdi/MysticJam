@@ -4,8 +4,8 @@ using UnityEngine;
 public class EnemySpawnController : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float initialSpawnInterval = 5f;
-    public float minSpawnInterval = 0.2f;
+    public float initialSpawnInterval = 7f;
+    public float minSpawnInterval = 0.5f;
     public float spawnIntervalDecreaseRate = 0.2f;
     public float spawnDelayRange = 1f;
     public float difficultyTimer = 10f; // Time interval for the progressive spawn increase
@@ -13,6 +13,7 @@ public class EnemySpawnController : MonoBehaviour
     public float spawnPointsPercentage = 0.2f; // Percentage of spawn points to calculate the initial spawn count
 
     private Transform[] spawnPoints;
+    private Transform spawnPoint;
     private float currentSpawnInterval;
     private float timeSurvived; // How long the player has survived
     private int enemiesToSpawn; // Current number of enemies to spawn in one batch
@@ -24,6 +25,10 @@ public class EnemySpawnController : MonoBehaviour
         currentSpawnInterval = initialSpawnInterval;
         enemiesToSpawn = Mathf.CeilToInt(spawnPointsPercentage * spawnPoints.Length); // Calculate the initial spawn rate
         elapsedTime = 0f; // Reset elapsed time
+        // Randomly select a spawn point from the spawn points array
+        spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        // Spawn the enemy at the selected spawn point
+        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         StartCoroutine(SpawnEnemies());
     }
 
@@ -64,7 +69,7 @@ public class EnemySpawnController : MonoBehaviour
             for (int i = 0; i < enemiesToSpawn; i++)
             {
                 // Randomly select a spawn point from the spawn points array
-                Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
                 // Random delay between spawns to prevent them from spawning at the same time
                 float randomDelay = Random.Range(0f, spawnDelayRange);

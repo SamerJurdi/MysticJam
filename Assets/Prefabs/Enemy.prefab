@@ -80,7 +80,7 @@ MonoBehaviour:
   health: 10
   moveSpeed: 3
   attackCooldown: 1
-  dropChance: 15
+  dropChance: 45
 --- !u!61 &1185008178784494126
 BoxCollider2D:
   m_ObjectHideFlags: 0
