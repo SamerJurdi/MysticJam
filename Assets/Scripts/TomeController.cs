@@ -9,11 +9,14 @@ public class TomeController : MonoBehaviour
     public float hoverHeight = 0.5f;
     public float hoverSpeed = 2f;
     public float transitionSpeed = 2f;
-    public float projectileSpeed = 10f;
+    public float projectileSpeed = 5f;
+    public float shootingCooldown = 2f;
+    public float pageBoost = 0.1f;
 
     private Vector3 offset;
     private Vector3 targetDirection; // Target direction for the floating object to face
     private Vector3 currentDirection; // Current direction the floating object is moving in
+    private float lastFireTime = -2f;
 
     void Start()
     {
@@ -58,10 +61,11 @@ public class TomeController : MonoBehaviour
         float hover = Mathf.Sin(Time.time * hoverSpeed) * hoverHeight;
         floatingObject.position = new Vector3(floatingObject.position.x, floatingObject.position.y + hover, floatingObject.position.z);
 
-        // Handle shooting when the left mouse button is clicked
-        if (Input.GetMouseButtonDown(0))
+        // Handle shooting logic
+        if (Input.GetMouseButtonDown(0) && Time.time - lastFireTime >= shootingCooldown)
         {
             ShootProjectile(directionToMouse);
+            lastFireTime = Time.time;
         }
     }
 
@@ -69,11 +73,16 @@ public class TomeController : MonoBehaviour
     {
         // Instantiate a new projectile
         GameObject projectile = Instantiate(projectilePrefab, floatingObject.position, Quaternion.identity);
-
-        // Get the Rigidbody2D of the projectile
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         // Normalize the direction and apply velocity to the projectile's Rigidbody2D
         rb.velocity = direction.normalized * projectileSpeed;
+    }
+
+    public void IncreaseFireRate()
+    {
+        if (shootingCooldown > pageBoost) {
+            shootingCooldown -= pageBoost;
+        } else shootingCooldown = 0f;
     }
 }

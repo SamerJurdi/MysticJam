@@ -6,15 +6,22 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    public int health = 3;
+    public GameObject tome;
+    public int maxHealth = 3;
     public float moveSpeed = 5f;
 
     private Rigidbody2D rb;
+    private LayerMask collectibleMask;
+    private TomeController tomeController;
+    private int health;
 
     private void Start()
     {
+        health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator.Play("Anim_Witch_Floating");
+        collectibleMask = 1 << LayerMask.NameToLayer("Collectible");
+        tomeController = tome.GetComponent<TomeController>();
     }
 
     private void Update()
@@ -29,6 +36,21 @@ public class PlayerController : MonoBehaviour
         UpdateDirectionAndAnimation(moveInputX);
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if ((collectibleMask.value & (1 << other.gameObject.layer)) > 0)
+        {
+            if (other.gameObject.CompareTag("Page") && tomeController != null)
+            {
+                tomeController.IncreaseFireRate();
+            }
+            if (other.gameObject.CompareTag("Heart"))
+            {
+                AddHealth();
+            }
+            Destroy(other.gameObject);
+        }
+    }
+
     private void UpdateDirectionAndAnimation(float moveInputX)
     {
         // Flip the sprite based on the direction
@@ -38,10 +60,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        health -= damage;
+        health--;
         animator.Play("Anim_Witch_Damage", -1, 0f);
+
+        StartCoroutine(WaitForDamageAnimation());
+    }
+
+    public void AddHealth()
+    {
+        if (health < maxHealth)
+        {
+            health++;
+        }
 
         StartCoroutine(WaitForDamageAnimation());
     }

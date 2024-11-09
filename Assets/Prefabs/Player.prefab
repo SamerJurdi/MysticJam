@@ -49,7 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8749105992195923829}
   spriteRenderer: {fileID: 2722153942824491753}
-  health: 3
+  tome: {fileID: 5852872271716400120}
+  maxHealth: 3
   moveSpeed: 5
 --- !u!50 &7344702994381308303
 Rigidbody2D:
@@ -290,6 +291,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4728295200455389993, guid: cd466313935882343ac9c5e6441aeced, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728295200455389993, guid: cd466313935882343ac9c5e6441aeced, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728295200455389993, guid: cd466313935882343ac9c5e6441aeced, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7787854112641215023, guid: cd466313935882343ac9c5e6441aeced, type: 3}
       propertyPath: m_Name
       value: Tome
@@ -302,5 +315,10 @@ PrefabInstance:
 --- !u!4 &2467606986837477599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2239172079445383432, guid: cd466313935882343ac9c5e6441aeced, type: 3}
+  m_PrefabInstance: {fileID: 4408338350208504279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5852872271716400120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7787854112641215023, guid: cd466313935882343ac9c5e6441aeced, type: 3}
   m_PrefabInstance: {fileID: 4408338350208504279}
   m_PrefabAsset: {fileID: 0}

@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Animator animator;
+    public GameObject page;
+    public GameObject heart;
     public int health = 10;
     public float moveSpeed = 3f;
-    public int damageToPlayer = 1;
     public float attackCooldown = 1f; // Time between damage ticks while colliding with the player
+    [Range(0, 100)]
+    public int dropChance = 15;
 
     private Transform player;
     private PlayerController playerController;
@@ -49,7 +52,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && attackCooldownTimer <= 0f && isAlive)
         {
-            playerController.TakeDamage(damageToPlayer);
+            playerController.TakeDamage();
             attackCooldownTimer = attackCooldown;
         }
     }
@@ -75,9 +78,23 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator WaitForDamageAnimation()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
 
+        SpawnItem();
         Destroy(gameObject);
     }
 
+    private void SpawnItem()
+    {
+        int randomValue = Random.Range(0, 100);
+        if (randomValue < dropChance)
+        {
+            randomValue = Random.Range(0, 100);
+            if (randomValue < 50 & page != null) {
+                Instantiate(page, transform.position, Quaternion.identity);
+            } else if (randomValue >= 50 & heart != null) {
+                Instantiate(heart, transform.position, Quaternion.identity);
+            }
+        }
+    }
 }
