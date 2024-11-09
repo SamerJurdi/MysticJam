@@ -136,4 +136,4 @@ MonoBehaviour:
   hoverHeight: 0.25
   hoverSpeed: 1.25
   transitionSpeed: 2
-  projectileSpeed: 10
+  projectileSpeed: 5

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    public Animator animator;
     public float lifetime = 5f;
     private float timeAlive;
     public int damage = 5;
@@ -10,6 +11,7 @@ public class ProjectileController : MonoBehaviour
 
     private void Start()
     {
+        animator.Play("Anim_Shot");
         timeAlive = 0f;
     }
 
