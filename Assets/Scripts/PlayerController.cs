@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private TomeController tomeController;
     private int health;
 
+    public List<HeartScript> hearts;
+
     private void Start()
     {
         health = maxHealth;
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         health--;
         animator.Play("Anim_Witch_Damage", -1, 0f);
+        UpdateHearts();
 
         StartCoroutine(WaitForDamageAnimation());
     }
@@ -74,9 +77,28 @@ public class PlayerController : MonoBehaviour
         {
             health++;
         }
+        UpdateHearts();
 
         StartCoroutine(WaitForDamageAnimation());
     }
+
+    public void UpdateHearts()
+    {
+        for (int i = 0; i < hearts.Count; i++)
+        {
+            if (i < health)
+            {
+                hearts[i].FullHeart.SetActive(true);
+                hearts[i].EmptyHeart.SetActive(false);
+            }
+            else
+            {
+                hearts[i].FullHeart.SetActive(false);
+                hearts[i].EmptyHeart.SetActive(true);
+            }
+        }
+    }
+
 
     private IEnumerator WaitForDamageAnimation()
     {

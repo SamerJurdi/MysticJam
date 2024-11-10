@@ -62,7 +62,7 @@ public class TomeController : MonoBehaviour
         floatingObject.position = new Vector3(floatingObject.position.x, floatingObject.position.y + hover, floatingObject.position.z);
 
         // Handle shooting logic
-        if (Input.GetMouseButtonDown(0) && Time.time - lastFireTime >= shootingCooldown)
+        if (Input.GetMouseButton(0) && Time.time - lastFireTime >= shootingCooldown)
         {
             ShootProjectile(directionToMouse);
             lastFireTime = Time.time;
