@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7127486660026190753}
   - component: {fileID: -3590093445743517479}
+  - component: {fileID: 6315940119392715082}
   m_Layer: 0
   m_Name: EnemySpawnManager
   m_TagString: Untagged
@@ -50,9 +51,21 @@ MonoBehaviour:
   minSpawnInterval: 1
   spawnIntervalDecreaseRate: 0.1
   spawnDelayRange: 1
-  difficultyTimer: 5
+  difficultyTimer: 10
   spawnMultiplier: 2
   spawnPointsPercentage: 0.2
+--- !u!114 &6315940119392715082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5321828496758170938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d855c73851f6b40a075ee9d0a9ee88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6615510021758128935
 PrefabInstance:
   m_ObjectHideFlags: 0

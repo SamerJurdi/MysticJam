@@ -5,15 +5,25 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Animator animator;
-    public GameObject page;
-    public GameObject heart;
     public int health = 10;
     public float moveSpeed = 3f;
     public float attackCooldown = 1f; // Time between damage ticks while colliding with the player
+
+    [Header("Collectible Settings")]
+    public GameObject page;
+    public GameObject heart;
     [Range(0, 100)]
+    [Tooltip("The chance of  any item dropping (%).")]
     public int dropChance = 15;
     [Range(0, 100)]
+    [Tooltip("Increase percentage to have more pages than hearts dropping.")]
     public int pagesToHeartsRatio = 80;
+
+    [Header("Audio Settings")]
+    public AudioClip enemySound;
+    public float minSoundInterval = 5f; // Min delay between sound requests
+    public float maxSoundInterval = 10f; // Max delay between sound requests
+    private AudioSource audioSource;
 
     private Transform player;
     private PlayerController playerController;
@@ -32,6 +42,8 @@ public class EnemyController : MonoBehaviour
             player = GameObject.FindWithTag("Player").transform;
         }
         playerController = player.GetComponent<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
+        StartCoroutine(SoundCoroutine());
     }
 
     private void Update()
@@ -99,6 +111,24 @@ public class EnemyController : MonoBehaviour
                 Instantiate(page, transform.position, Quaternion.identity);
             } else if (randomValue >= pagesToHeartsRatio & heart != null) {
                 Instantiate(heart, transform.position, Quaternion.identity);
+            }
+        }
+    }
+
+    private IEnumerator SoundCoroutine()
+    {
+        while (true)
+        {
+            // Random delay before this enemy tries to make a sound
+            float randomDelay = Random.Range(minSoundInterval, maxSoundInterval);
+            yield return new WaitForSeconds(randomDelay);
+
+            // Request permission to make a sound
+            if (EnemySoundManager.Instance.CanMakeSound())
+            {
+                // Play sound and register it with the sound manager
+                audioSource.PlayOneShot(enemySound);
+                EnemySoundManager.Instance.RegisterSound();
             }
         }
     }
