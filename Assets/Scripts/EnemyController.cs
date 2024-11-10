@@ -23,7 +23,11 @@ public class EnemyController : MonoBehaviour
     public AudioClip enemySound;
     public float minSoundInterval = 5f; // Min delay between sound requests
     public float maxSoundInterval = 10f; // Max delay between sound requests
+    public AudioClip[] destructionSounds; // Array of possible sound clips
+    [Range(0f, 1f)]
+    public float soundOnDeathChance = 0.5f;  // Probability that a sound will play (e.g., 0.5 = 50%)
     private AudioSource audioSource;
+
 
     private Transform player;
     private PlayerController playerController;
@@ -86,6 +90,14 @@ public class EnemyController : MonoBehaviour
         boxCollider.enabled = false; // Prevent collisions
         rb.velocity = Vector2.zero; // Stop them in their place
         animator.Play("Anim_Pumpkin_Death");
+
+        // Check if a sound should be played based on probability
+        if (destructionSounds.Length > 0 && Random.value < soundOnDeathChance)
+        {
+            // Pick a random clip from the array
+            audioSource.clip = destructionSounds[Random.Range(0, destructionSounds.Length)];
+            audioSource.Play();
+        }
 
         StartCoroutine(WaitForDamageAnimation());
     }
