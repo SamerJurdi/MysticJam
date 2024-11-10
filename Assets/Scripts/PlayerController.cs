@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
 
     [Header("Audio Settings")]
+    public AudioClip pageSound;
+    public AudioClip heartSound;
     public AudioClip evilLaugh;
     public AudioClip[] gruntSounds;
     public float minTimeBetweenLaughs = 15f;
@@ -72,10 +74,14 @@ public class PlayerController : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Page") && tomeController != null)
             {
+                audioSource.clip = pageSound;
+                audioSource.Play();
                 tomeController.IncreaseFireRate();
             }
             if (other.gameObject.CompareTag("Heart"))
             {
+                audioSource.clip = heartSound;
+                audioSource.Play();
                 AddHealth();
             }
             Destroy(other.gameObject);
