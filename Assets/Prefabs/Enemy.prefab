@@ -80,7 +80,7 @@ MonoBehaviour:
   health: 1
   moveSpeed: 3
   attackCooldown: 1
-  dropChance: 45
+  dropChance: 15
   pagesToHeartsRatio: 80
 --- !u!61 &1185008178784494126
 BoxCollider2D:
