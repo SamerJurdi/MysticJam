@@ -55,6 +55,10 @@ MonoBehaviour:
   maxHealth: 3
   moveSpeed: 5
   evilLaugh: {fileID: 8300000, guid: 9d6d99b7a5224384e8c2dc76969c9426, type: 3}
+  gruntSounds:
+  - {fileID: 8300000, guid: ca10e183c8cb10b408500734afb005e3, type: 3}
+  - {fileID: 8300000, guid: 0b93ad3fe48fd61478ba23e95411ba44, type: 3}
+  - {fileID: 8300000, guid: e2dcd000094e21f4d83f208d7f63a5f3, type: 3}
   minTimeBetweenLaughs: 25
   maxTimeBetweenLaughs: 40
   hearts: []

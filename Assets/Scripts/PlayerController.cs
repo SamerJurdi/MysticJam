@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Audio Settings")]
     public AudioClip evilLaugh;
+    public AudioClip[] gruntSounds;
     public float minTimeBetweenLaughs = 15f;
     public float maxTimeBetweenLaughs = 40f;
     private float laughCooldown;
@@ -78,6 +79,11 @@ public class PlayerController : MonoBehaviour
     {
         health--;
         animator.Play("Anim_Witch_Damage", -1, 0f);
+
+        // Select a random grunt sound from the array
+        audioSource.clip = gruntSounds[Random.Range(0, gruntSounds.Length)];
+        audioSource.Play();
+
         UpdateHearts();
 
         StartCoroutine(WaitForDamageAnimation());
