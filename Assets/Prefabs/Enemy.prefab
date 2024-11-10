@@ -77,10 +77,11 @@ MonoBehaviour:
   animator: {fileID: 904507154432056969}
   page: {fileID: 6865712450192691865, guid: a83db49003753194994b20e880b6f732, type: 3}
   heart: {fileID: 1802206364105773568, guid: f1b14c51b308f6842bdd1d08c7255881, type: 3}
-  health: 10
+  health: 1
   moveSpeed: 3
   attackCooldown: 1
   dropChance: 45
+  pagesToHeartsRatio: 80
 --- !u!61 &1185008178784494126
 BoxCollider2D:
   m_ObjectHideFlags: 0

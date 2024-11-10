@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public float attackCooldown = 1f; // Time between damage ticks while colliding with the player
     [Range(0, 100)]
     public int dropChance = 15;
+    [Range(0, 100)]
+    public int pagesToHeartsRatio = 80;
 
     private Transform player;
     private PlayerController playerController;
@@ -90,9 +92,9 @@ public class EnemyController : MonoBehaviour
         if (randomValue < dropChance)
         {
             randomValue = Random.Range(0, 100);
-            if (randomValue < 50 & page != null) {
+            if (randomValue < pagesToHeartsRatio & page != null) {
                 Instantiate(page, transform.position, Quaternion.identity);
-            } else if (randomValue >= 50 & heart != null) {
+            } else if (randomValue >= pagesToHeartsRatio & heart != null) {
                 Instantiate(heart, transform.position, Quaternion.identity);
             }
         }
