@@ -50,7 +50,7 @@ MonoBehaviour:
   minSpawnInterval: 1
   spawnIntervalDecreaseRate: 0.1
   spawnDelayRange: 1
-  difficultyTimer: 5
+  difficultyTimer: 10
   spawnMultiplier: 2
   spawnPointsPercentage: 0.2
 --- !u!1001 &6615510021758128935
