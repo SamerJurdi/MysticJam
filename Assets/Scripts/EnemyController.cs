@@ -27,7 +27,10 @@ public class EnemyController : MonoBehaviour
         animator.Play("Anim_Pumpkin");
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        player = GameObject.FindWithTag("Player").transform;
+        if (GameObject.FindWithTag("Player") != null)
+        {
+            player = GameObject.FindWithTag("Player").transform;
+        }
         playerController = player.GetComponent<PlayerController>();
     }
 

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
@@ -16,9 +17,11 @@ public class PlayerController : MonoBehaviour
     private int health;
 
     public List<HeartScript> hearts;
-
+    public float Score;
+    public TextMeshProUGUI ScoreText;
     private void Start()
     {
+        Score = 0;
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator.Play("Anim_Witch_Floating");
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Score += Time.deltaTime;
+        ScoreText.text = "Score: " + Score.ToString("F0");
         // Get movement input for both X and Y axes
         float moveInputX = Input.GetAxisRaw("Horizontal");  // Left/Right (A/D or Arrow Keys)
         float moveInputY = Input.GetAxisRaw("Vertical");    // Up/Down (W/S or Arrow Keys)
@@ -113,6 +118,14 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         // TODO: Handle the player's death (e.g., play animation, show death screen, etc.)
+
+        if (PlayerPrefs.GetInt("HighScore", 0) < Score)
+        {
+            PlayerPrefs.SetInt("HighScore", Mathf.RoundToInt(Score));
+        }
         Destroy(gameObject);
+        SceneManager.LoadScene("StartScene");
+
+        
     }
 }
