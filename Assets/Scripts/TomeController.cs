@@ -90,11 +90,11 @@ public class TomeController : MonoBehaviour
 
         if (shootingCooldown != 1)
         {
-            AttackSpeedText.text = "Attack Cooldown: " + shootingCooldown.ToString() + " Seconds";
+            AttackSpeedText.text = "Attack Cooldown: " + shootingCooldown.ToString("F2") + " Seconds";
         }
         else
         {
-            AttackSpeedText.text = "Attack Cooldown: " + shootingCooldown.ToString() + " Second";
+            AttackSpeedText.text = "Attack Cooldown: " + shootingCooldown.ToString("F2") + " Second";
         }
     }
 }

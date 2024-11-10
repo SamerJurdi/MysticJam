@@ -36,6 +36,8 @@ public class EnemyController : MonoBehaviour
     private float attackCooldownTimer = 0f;
     private bool isAlive = true;
 
+    private bool dropped;
+
     private void Start()
     {
         animator.Play("Anim_Pumpkin");
@@ -115,13 +117,20 @@ public class EnemyController : MonoBehaviour
 
     private void SpawnItem()
     {
+        if (dropped)
+        {
+            return;
+        }
+        dropped = true;
+
         int randomValue = Random.Range(0, 100);
         if (randomValue < dropChance)
         {
             randomValue = Random.Range(0, 100);
             if (randomValue < pagesToHeartsRatio & page != null) {
                 Instantiate(page, transform.position, Quaternion.identity);
-            } else if (randomValue >= pagesToHeartsRatio & heart != null) {
+            } 
+            else if (randomValue >= pagesToHeartsRatio & heart != null) {
                 Instantiate(heart, transform.position, Quaternion.identity);
             }
         }
