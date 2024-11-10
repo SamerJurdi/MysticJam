@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class TomeController : MonoBehaviour
@@ -17,6 +18,8 @@ public class TomeController : MonoBehaviour
     private Vector3 targetDirection; // Target direction for the floating object to face
     private Vector3 currentDirection; // Current direction the floating object is moving in
     private float lastFireTime = -2f;
+
+    public TextMeshProUGUI AttackSpeedText;
 
     void Start()
     {
@@ -84,5 +87,14 @@ public class TomeController : MonoBehaviour
         if (shootingCooldown > pageBoost) {
             shootingCooldown -= pageBoost;
         } else shootingCooldown = 0f;
+
+        if (shootingCooldown != 1)
+        {
+            AttackSpeedText.text = "Attack Cooldown: " + shootingCooldown.ToString() + " Seconds";
+        }
+        else
+        {
+            AttackSpeedText.text = "Attack Cooldown: " + shootingCooldown.ToString() + " Second";
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
@@ -19,6 +20,13 @@ public class PlayerController : MonoBehaviour
     public List<HeartScript> hearts;
     public float Score;
     public TextMeshProUGUI ScoreText;
+    public GameObject HighScoreText;
+    public bool dead;
+
+    public Animator RetryAnim;
+
+    public GameObject DeathScreen;
+
     private void Start()
     {
         Score = 0;
@@ -31,8 +39,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Score += Time.deltaTime;
-        ScoreText.text = "Score: " + Score.ToString("F0");
+        if (!dead)
+        {
+            Score += Time.deltaTime;
+            ScoreText.text = "Score: " + Score.ToString("F0");
+        }
         // Get movement input for both X and Y axes
         float moveInputX = Input.GetAxisRaw("Horizontal");  // Left/Right (A/D or Arrow Keys)
         float moveInputY = Input.GetAxisRaw("Vertical");    // Up/Down (W/S or Arrow Keys)
@@ -123,9 +134,21 @@ public class PlayerController : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", Mathf.RoundToInt(Score));
         }
-        Destroy(gameObject);
-        SceneManager.LoadScene("StartScene");
 
-        
+        //Destroy(gameObject);
+
+        DeathScreen.SetActive(true);
+        Time.timeScale = 0f;
+        RetryAnim.updateMode = AnimatorUpdateMode.UnscaledTime;
+        dead = true;
+        HighScoreText.SetActive(false);
+
+        //SceneManager.LoadScene("StartScene");
+    }
+
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("GameLevel");
     }
 }
