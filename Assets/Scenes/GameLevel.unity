@@ -531,6 +531,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5634831314773832559, guid: ecc1e397d1b5a5c4f82803f9bc99ac2f, type: 3}
+      propertyPath: decelerationRate
+      value: 0.99
+      objectReference: {fileID: 0}
     - target: {fileID: 5751471539969927375, guid: ecc1e397d1b5a5c4f82803f9bc99ac2f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1374,7 +1378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5321828496758170938, guid: 2ce8d4c3a0876624a933bbc16c366ccf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7127486660026190753, guid: 2ce8d4c3a0876624a933bbc16c366ccf, type: 3}
       propertyPath: m_LocalPosition.x

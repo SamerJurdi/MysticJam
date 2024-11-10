@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public GameObject tome;
     public int maxHealth = 3;
     public float moveSpeed = 5f;
+    [Tooltip("Deceleration multiplier for gradual stopping.")]
+    public float decelerationRate = 0.99f;
 
     [Header("Audio Settings")]
     public AudioClip pageSound;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
 
     private Rigidbody2D rb;
+    private Vector2 currentVelocity;
     private LayerMask collectibleMask;
     private TomeController tomeController;
     private int health;
@@ -58,12 +61,27 @@ public class PlayerController : MonoBehaviour
             Score += Time.deltaTime;
             ScoreText.text = "Score: " + Score.ToString("F0");
         }
+
         // Get movement input for both X and Y axes
         float moveInputX = Input.GetAxisRaw("Horizontal");  // Left/Right (A/D or Arrow Keys)
         float moveInputY = Input.GetAxisRaw("Vertical");    // Up/Down (W/S or Arrow Keys)
 
-        // Apply movement in both X and Y axes using Rigidbody2D velocity
-        rb.velocity = new Vector2(moveInputX, moveInputY).normalized * moveSpeed;
+        // Check for input
+        Vector2 input = new Vector2(moveInputX, moveInputY);
+
+        if (input != Vector2.zero)
+        {
+            // Apply movement when input is detected
+            currentVelocity = input.normalized * moveSpeed;
+        }
+        else
+        {
+            // Gradually reduce speed when no input
+            currentVelocity *= decelerationRate;
+        }
+
+        // Move the character
+        rb.velocity = currentVelocity;
 
         UpdateDirectionAndAnimation(moveInputX);
         TryPlayEvilLaugh();
