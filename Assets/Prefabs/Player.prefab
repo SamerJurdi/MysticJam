@@ -152,8 +152,9 @@ MonoBehaviour:
   tome: {fileID: 5852872271716400120}
   maxHealth: 3
   moveSpeed: 5
-  pageSound: {fileID: 8300000, guid: 52247bf5b2b330f468992b7cde4db467, type: 3}
-  heartSound: {fileID: 8300000, guid: fb17a72b9b7e221458b56035cace36d9, type: 3}
+  decelerationRate: 0.99
+  pageSound: {fileID: 8300000, guid: 957d0d34669910e43b10ed4e853da221, type: 3}
+  heartSound: {fileID: 8300000, guid: c6dfa885f1f9c344893747fc2e45b897, type: 3}
   evilLaugh: {fileID: 8300000, guid: 9d6d99b7a5224384e8c2dc76969c9426, type: 3}
   gruntSounds:
   - {fileID: 8300000, guid: ca10e183c8cb10b408500734afb005e3, type: 3}
