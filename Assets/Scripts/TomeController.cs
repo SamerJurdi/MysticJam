@@ -21,12 +21,17 @@ public class TomeController : MonoBehaviour
 
     public TextMeshProUGUI AttackSpeedText;
 
+    [Header("Audio Settings")]
+    public AudioClip shotSound;
+    private AudioSource audioSource;
+
     void Start()
     {
         // Calculate the initial offset of the floating object from the player
         offset = floatingObject.position - player.position;
         targetDirection = offset.normalized;
         currentDirection = targetDirection;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -77,6 +82,9 @@ public class TomeController : MonoBehaviour
         // Instantiate a new projectile
         GameObject projectile = Instantiate(projectilePrefab, floatingObject.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+
+        audioSource.clip = shotSound;
+        audioSource.Play();
 
         // Normalize the direction and apply velocity to the projectile's Rigidbody2D
         rb.velocity = direction.normalized * projectileSpeed;
