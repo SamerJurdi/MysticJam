@@ -12,6 +12,16 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 3;
     public float moveSpeed = 5f;
 
+    [Header("Audio Settings")]
+    public AudioClip evilLaugh;
+    public AudioClip[] gruntSounds;
+    public float minTimeBetweenLaughs = 15f;
+    public float maxTimeBetweenLaughs = 40f;
+    private float laughCooldown;
+    private bool canPlaySound = true;
+    private AudioSource audioSource;
+
+
     private Rigidbody2D rb;
     private LayerMask collectibleMask;
     private TomeController tomeController;
@@ -30,11 +40,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Score = 0;
+        laughCooldown = Random.Range(minTimeBetweenLaughs, maxTimeBetweenLaughs);
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator.Play("Anim_Witch_Floating");
         collectibleMask = 1 << LayerMask.NameToLayer("Collectible");
         tomeController = tome.GetComponent<TomeController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -52,6 +64,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveInputX, moveInputY).normalized * moveSpeed;
 
         UpdateDirectionAndAnimation(moveInputX);
+        TryPlayEvilLaugh();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -82,6 +95,11 @@ public class PlayerController : MonoBehaviour
     {
         health--;
         animator.Play("Anim_Witch_Damage", -1, 0f);
+
+        // Select a random grunt sound from the array
+        audioSource.clip = gruntSounds[Random.Range(0, gruntSounds.Length)];
+        audioSource.Play();
+
         UpdateHearts();
 
         StartCoroutine(WaitForDamageAnimation());
@@ -150,5 +168,27 @@ public class PlayerController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("GameLevel");
+    }
+
+    private void TryPlayEvilLaugh()
+    {
+        // Check if player is moving and if sound cooldown allows
+        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && canPlaySound)
+        {
+            StartCoroutine(PlayEvilLaugh());
+        }
+    }
+
+    private IEnumerator PlayEvilLaugh()
+    {
+        canPlaySound = false;
+
+        audioSource.clip = evilLaugh;
+        audioSource.Play();
+
+        // Wait until the cooldown or sound clip duration, whichever is longer
+        yield return new WaitForSeconds(Mathf.Max(laughCooldown, evilLaugh.length));
+
+        canPlaySound = true;
     }
 }

@@ -77,15 +77,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 904507154432056969}
   health: 1
-  moveSpeed: 3
+  moveSpeed: 3.48
   attackCooldown: 1
   page: {fileID: 6865712450192691865, guid: a83db49003753194994b20e880b6f732, type: 3}
   heart: {fileID: 1802206364105773568, guid: f1b14c51b308f6842bdd1d08c7255881, type: 3}
   dropChance: 15
   pagesToHeartsRatio: 80
-  enemySound: {fileID: 8300000, guid: dbd53af307e6cec4080f748951a32745, type: 3}
-  minSoundInterval: 5
-  maxSoundInterval: 10
+  enemySound: {fileID: 8300000, guid: cdc8b69c05d6acb439bf3fa313d46d77, type: 3}
+  minSoundInterval: 2
+  maxSoundInterval: 5
+  destructionSounds:
+  - {fileID: 8300000, guid: ed3f0ba95024b77419483f9468be3853, type: 3}
+  - {fileID: 8300000, guid: 065008c3edfa2ab4ca779b2053d8d951, type: 3}
+  - {fileID: 8300000, guid: 698493226c8c5874d931a489c9cdc90f, type: 3}
+  soundOnDeathChance: 1
 --- !u!61 &1185008178784494126
 BoxCollider2D:
   m_ObjectHideFlags: 0
